@@ -7,15 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
+exports.AbnormalFilter = void 0;
 const common_1 = require("@nestjs/common");
-let UserService = class UserService {
-    findAll({ id }) {
-        return id;
+let AbnormalFilter = class AbnormalFilter {
+    catch(exception, host) {
+        const ctx = host.switchToHttp();
+        const response = ctx.getResponse();
+        const status = exception.getStatus();
+        const message = exception.getResponse().message;
+        response.status(status).json({
+            code: -1,
+            data: null,
+            msg: message,
+        });
     }
 };
-exports.UserService = UserService;
-exports.UserService = UserService = __decorate([
-    (0, common_1.Injectable)()
-], UserService);
-//# sourceMappingURL=user.service.js.map
+exports.AbnormalFilter = AbnormalFilter;
+exports.AbnormalFilter = AbnormalFilter = __decorate([
+    (0, common_1.Catch)(common_1.HttpException)
+], AbnormalFilter);
+//# sourceMappingURL=abnormalFilter.js.map

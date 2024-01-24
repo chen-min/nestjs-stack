@@ -20,20 +20,22 @@ const user_service_1 = require("./user.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./entities/user.entity");
+const find_user_dto_1 = require("./dto/find-user.dto");
 let UserController = class UserController {
     constructor(userService, userRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
     }
-    findAll() {
-        return this.userRepository.find();
+    findAll(dto) {
+        return this.userService.findAll(dto);
     }
 };
 exports.UserController = UserController;
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [find_user_dto_1.FindUserDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findAll", null);
 exports.UserController = UserController = __decorate([

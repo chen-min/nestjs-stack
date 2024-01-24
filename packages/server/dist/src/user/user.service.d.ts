@@ -1,3 +1,4 @@
+import { FindUserDto } from './dto/find-user.dto';
 export declare class UserService {
-    findAll(): string;
+    findAll({ id }: FindUserDto): string;
 }

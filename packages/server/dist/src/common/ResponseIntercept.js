@@ -7,15 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
+exports.ResponseIntercept = void 0;
+const rxjs_1 = require("rxjs");
 const common_1 = require("@nestjs/common");
-let UserService = class UserService {
-    findAll({ id }) {
-        return id;
+let ResponseIntercept = class ResponseIntercept {
+    intercept(context, next) {
+        return next.handle().pipe((0, rxjs_1.map)((data) => {
+            return {
+                code: 0,
+                data,
+            };
+        }));
     }
 };
-exports.UserService = UserService;
-exports.UserService = UserService = __decorate([
+exports.ResponseIntercept = ResponseIntercept;
+exports.ResponseIntercept = ResponseIntercept = __decorate([
     (0, common_1.Injectable)()
-], UserService);
-//# sourceMappingURL=user.service.js.map
+], ResponseIntercept);
+//# sourceMappingURL=responseIntercept.js.map
